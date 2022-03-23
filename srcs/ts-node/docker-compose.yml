@@ -15,3 +15,15 @@ services:
     ports:
       - '4000:4000'
     command: npm run dev
+
+#     // PROD compose
+#
+#version: '3.7'
+#
+#services:
+#  ts-node-docker:
+#    build:
+#      target: production
+#    command: node build/index.js
+#
+#
