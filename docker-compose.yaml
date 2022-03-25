@@ -1,0 +1,13 @@
+version: '3'
+services:
+  # backend
+  server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    #depends_on:
+    #  - data_base
+    environment:
+      - SECRET='Holla Amigo'
+    restart: always
+    container_name: node
