@@ -1,0 +1,16 @@
+[
+  {
+    "absPath": "/home/lej/Documents/transcendence/frontend/dist/app.js",
+    "browserPath": "/app.js",
+    "relativePath": "app.js",
+    "type": "js",
+    "webIndexed": true
+  },
+  {
+    "absPath": "/home/lej/Documents/transcendence/frontend/dist/vendor.js",
+    "browserPath": "/vendor.js",
+    "relativePath": "vendor.js",
+    "type": "js",
+    "webIndexed": true
+  }
+]

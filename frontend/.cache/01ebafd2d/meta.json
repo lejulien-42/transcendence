@@ -1,0 +1,119 @@
+{
+  "currentId": 4,
+  "modules": {
+    "1": {
+      "absPath": "/home/lej/Documents/transcendence/frontend/src/sketch.ts",
+      "dependencies": [
+        2
+      ],
+      "id": 1,
+      "mtime": 1648449980335,
+      "packageId": "default",
+      "publicPath": "src/sketch.ts"
+    },
+    "2": {
+      "absPath": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-hot-reload/clientHotReload.ts",
+      "dependencies": [
+        3
+      ],
+      "id": 2,
+      "mtime": 1648444520319,
+      "packageId": "fuse-box-hot-reload@1.0.0",
+      "publicPath": "node_modules/fuse-box/modules/fuse-box-hot-reload/clientHotReload.ts"
+    },
+    "3": {
+      "absPath": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-websocket/index.js",
+      "dependencies": [
+        4
+      ],
+      "id": 3,
+      "mtime": 1648444519655,
+      "packageId": "fuse-box-websocket@1.0.0",
+      "publicPath": "node_modules/fuse-box/modules/fuse-box-websocket/index.js"
+    },
+    "4": {
+      "absPath": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/events/index.js",
+      "dependencies": [],
+      "id": 4,
+      "mtime": 1648444519635,
+      "packageId": "events@1.0.0",
+      "publicPath": "node_modules/fuse-box/modules/events/index.js"
+    }
+  },
+  "packages": {
+    "default": {
+      "type": 0,
+      "publicName": "default",
+      "isUserPackage": true,
+      "isExternalPackage": false
+    },
+    "fuse-box-hot-reload@1.0.0": {
+      "type": 1,
+      "meta": {
+        "fusebox": {
+          "dev": true
+        },
+        "name": "fuse-box-hot-reload",
+        "packageJSONLocation": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-hot-reload/package.json",
+        "packageRoot": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-hot-reload",
+        "version": "1.0.0",
+        "entryAbsPath": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-hot-reload/clientHotReload.ts",
+        "entryFuseBoxPath": "clientHotReload.js"
+      },
+      "publicName": "fuse-box-hot-reload@1.0.0",
+      "isUserPackage": false,
+      "isExternalPackage": true,
+      "deps": [
+        2
+      ],
+      "mtime": 1648444520275
+    },
+    "fuse-box-websocket@1.0.0": {
+      "type": 1,
+      "meta": {
+        "fusebox": {
+          "dev": true
+        },
+        "name": "fuse-box-websocket",
+        "packageJSONLocation": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-websocket/package.json",
+        "packageRoot": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-websocket",
+        "version": "1.0.0",
+        "entryAbsPath": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/fuse-box-websocket/index.js",
+        "entryFuseBoxPath": "index.js"
+      },
+      "publicName": "fuse-box-websocket@1.0.0",
+      "isUserPackage": false,
+      "isExternalPackage": true,
+      "deps": [
+        3
+      ],
+      "mtime": 1648444520275
+    },
+    "events@1.0.0": {
+      "type": 1,
+      "meta": {
+        "fusebox": {
+          "polyfill": true
+        },
+        "name": "events",
+        "packageJSONLocation": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/events/package.json",
+        "packageRoot": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/events",
+        "version": "1.0.0",
+        "entryAbsPath": "/home/lej/Documents/transcendence/frontend/node_modules/fuse-box/modules/events/index.js",
+        "entryFuseBoxPath": "index.js"
+      },
+      "publicName": "events@1.0.0",
+      "isUserPackage": false,
+      "isExternalPackage": true,
+      "deps": [
+        4
+      ],
+      "mtime": 1648444520271
+    }
+  },
+  "ctx": {
+    "linkedReferences": {},
+    "systemDependencies": {},
+    "tsConfigAtPaths": []
+  }
+}
