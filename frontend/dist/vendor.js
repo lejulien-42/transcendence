@@ -1,100 +1,5 @@
 __fuse.bundle({
 
-// node_modules/fuse-box/modules/fuse-box-hot-reload/clientHotReload.ts @2
-2: function(__fusereq, exports, module){
-exports.__esModule = true;
-const {SocketClient} = __fusereq(3);
-function log(text) {
-  console.info(`%c${text}`, 'color: #237abe');
-}
-const STYLESHEET_EXTENSIONS = ['.css', '.scss', '.sass', '.less', '.styl'];
-function gatherSummary() {
-  const modules = [];
-  for (const id in __fuse.modules) {
-    modules.push(parseInt(id));
-  }
-  return {
-    modules
-  };
-}
-function createHMRHelper(payload) {
-  const {updates} = payload;
-  let isStylesheeetUpdate = true;
-  for (const item of updates) {
-    const file = item.path;
-    const s = file.match(/(\.\w+)$/i);
-    const extension = s[1];
-    if (!STYLESHEET_EXTENSIONS.includes(extension)) {
-      isStylesheeetUpdate = false;
-    }
-  }
-  return {
-    isStylesheeetUpdate,
-    callEntries: () => {
-      const appEntries = [1];
-      for (const entryId of appEntries) {
-        __fuse.r(entryId);
-      }
-    },
-    callModules: modules => {
-      for (const item of modules) __fuse.r(item.id);
-    },
-    flushAll: () => {
-      __fuse.c = {};
-    },
-    flushModules: modules => {
-      for (const item of modules) {
-        __fuse.c[item.id] = undefined;
-      }
-    },
-    updateModules: () => {
-      for (const update of updates) {
-        new Function(update.content)();
-      }
-    }
-  };
-}
-exports.connect = opts => {
-  let client = new SocketClient(opts);
-  client.connect();
-  client.on('get-summary', data => {
-    const {id} = data;
-    const summary = gatherSummary();
-    client.send('summary', {
-      id,
-      summary
-    });
-  });
-  client.on('reload', () => {
-    window.location.reload();
-  });
-  client.on('hmr', payload => {
-    const {updates} = payload;
-    const hmr = createHMRHelper(payload);
-    const hmrModuleId = undefined;
-    if (hmrModuleId) {
-      const hmrModule = __fuse.r(hmrModuleId);
-      if (!hmrModule.default) throw new Error('An HMR plugin must export a default function');
-      hmrModule.default(payload, hmr);
-      return;
-    }
-    hmr.updateModules();
-    if (hmr.isStylesheeetUpdate) {
-      log(`Flushing ${updates.map(item => item.path)}`);
-      hmr.flushModules(updates);
-      log(`Calling modules ${updates.map(item => item.path)}`);
-      hmr.callModules(updates);
-    } else {
-      log(`Flushing all`);
-      hmr.flushAll();
-      log(`Calling entries all`);
-      hmr.callEntries();
-    }
-  });
-};
-
-},
-
 // node_modules/fuse-box/modules/fuse-box-websocket/index.js @3
 3: function(__fusereq, exports, module){
 const events = __fusereq(4);
@@ -356,6 +261,101 @@ function isObject(arg) {
 function isUndefined(arg) {
   return arg === void 0;
 }
+
+},
+
+// node_modules/fuse-box/modules/fuse-box-hot-reload/clientHotReload.ts @2
+2: function(__fusereq, exports, module){
+exports.__esModule = true;
+const {SocketClient} = __fusereq(3);
+function log(text) {
+  console.info(`%c${text}`, 'color: #237abe');
+}
+const STYLESHEET_EXTENSIONS = ['.css', '.scss', '.sass', '.less', '.styl'];
+function gatherSummary() {
+  const modules = [];
+  for (const id in __fuse.modules) {
+    modules.push(parseInt(id));
+  }
+  return {
+    modules
+  };
+}
+function createHMRHelper(payload) {
+  const {updates} = payload;
+  let isStylesheeetUpdate = true;
+  for (const item of updates) {
+    const file = item.path;
+    const s = file.match(/(\.\w+)$/i);
+    const extension = s[1];
+    if (!STYLESHEET_EXTENSIONS.includes(extension)) {
+      isStylesheeetUpdate = false;
+    }
+  }
+  return {
+    isStylesheeetUpdate,
+    callEntries: () => {
+      const appEntries = [1];
+      for (const entryId of appEntries) {
+        __fuse.r(entryId);
+      }
+    },
+    callModules: modules => {
+      for (const item of modules) __fuse.r(item.id);
+    },
+    flushAll: () => {
+      __fuse.c = {};
+    },
+    flushModules: modules => {
+      for (const item of modules) {
+        __fuse.c[item.id] = undefined;
+      }
+    },
+    updateModules: () => {
+      for (const update of updates) {
+        new Function(update.content)();
+      }
+    }
+  };
+}
+exports.connect = opts => {
+  let client = new SocketClient(opts);
+  client.connect();
+  client.on('get-summary', data => {
+    const {id} = data;
+    const summary = gatherSummary();
+    client.send('summary', {
+      id,
+      summary
+    });
+  });
+  client.on('reload', () => {
+    window.location.reload();
+  });
+  client.on('hmr', payload => {
+    const {updates} = payload;
+    const hmr = createHMRHelper(payload);
+    const hmrModuleId = undefined;
+    if (hmrModuleId) {
+      const hmrModule = __fuse.r(hmrModuleId);
+      if (!hmrModule.default) throw new Error('An HMR plugin must export a default function');
+      hmrModule.default(payload, hmr);
+      return;
+    }
+    hmr.updateModules();
+    if (hmr.isStylesheeetUpdate) {
+      log(`Flushing ${updates.map(item => item.path)}`);
+      hmr.flushModules(updates);
+      log(`Calling modules ${updates.map(item => item.path)}`);
+      hmr.callModules(updates);
+    } else {
+      log(`Flushing all`);
+      hmr.flushAll();
+      log(`Calling entries all`);
+      hmr.callEntries();
+    }
+  });
+};
 
 }
 }, function(){

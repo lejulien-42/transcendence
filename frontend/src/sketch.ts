@@ -5,7 +5,6 @@ import { threadId } from "worker_threads";
 
 let WIDTH = 0;
 let HEIGHT = 0;
-let sepSize = 0;
 
 
 var Player = function(p) {
@@ -47,8 +46,8 @@ var Ball = function(p) {
     p.rect(this.x, this.y, this.size, this.size);
   }
 
-  this.update = function() {
-    if (this.x <= 0 || (this.x + this.size > WIDTH))
+  this.update = function(player) {
+    if (this.x <= 0 || (this.x + this.size > WIDTH) || this.y > player.y && this.y < player.y + player.h)
         this.dx = this.dx * -1;
     if (this.y <= 0 || (this.y + this.size > HEIGHT))
         this.dy = this.dy * -1;
@@ -64,7 +63,6 @@ var sketch = function (p: p5) {
   p.setup = function () {
     WIDTH = p.windowWidth - 20;
     HEIGHT = p.windowHeight - 20;
-    sepSize = HEIGHT * 0.5 - 1;
     p.createCanvas(WIDTH , HEIGHT);
     player = new Player(p);
     ball = new Ball(p);
@@ -81,7 +79,7 @@ var sketch = function (p: p5) {
     p.noStroke();
     p.fill(255);
     player.update();
-    ball.update();
+    ball.update(player);
     player.show();
     ball.show();
   }
