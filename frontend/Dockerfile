@@ -1,11 +1,11 @@
-FROM node:12.6.0
+FROM node:14
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-RUN yarn
+RUN npm install
 
-EXPOSE 1234
+EXPOSE 4000
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
