@@ -2,15 +2,13 @@
 let y = 0;
 
 function setup() {
-    console.log("🚀 - Setup initialized - P5 is running");
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight / 2);
 }
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth, windowHeight / 2);
 }
 function draw() {
-    background(0);
-    rect(20, 20, 4, 4);
+    rect(mouseX, mouseY, 4, 4);
 }
 
 function keyPressed() {
@@ -18,4 +16,5 @@ function keyPressed() {
         y--;
     else if (keyCode === DOWN_ARROW)
         y++;
+    background(random(255), random(255), random(255));
 }
