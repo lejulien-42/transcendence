@@ -20,11 +20,16 @@ var sketch = function (p: p5) {
   }
 
   p.windowResized = function() {
-    p.resizeCanvas(p.windowWidth, p.windowHeight);
+    WIDTH = p.windowWidth - 20;
+    HEIGHT = p.windowHeight / 2;
+    ballSiz = WIDTH * 0.02;
+    p.resizeCanvas(WIDTH, HEIGHT);
   }
 
   p.draw = function () {
     p.background(0);
+    p.fill(255);
+    p.rect(WIDTH / 2 -ballSiz, ballSiz, ballSiz, HEIGHT - 2 * ballSiz);
     
     if (ballx <= 0 || (ballx + ballSiz > WIDTH))
         balldx = balldx * -1;
