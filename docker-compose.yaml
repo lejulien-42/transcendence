@@ -5,9 +5,11 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./frontend:/usr/src/app
+      - /app/node_modules
     ports:
-      - "4444"
-    container_name: node
+      - 4444:4444
+    working_dir: /usr/src/app
+    command: sh -c "npm run sketch" &> /dev/null

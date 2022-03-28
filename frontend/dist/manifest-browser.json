@@ -1,13 +1,13 @@
 [
   {
-    "absPath": "/home/lej/Documents/transcendence/frontend/dist/app.js",
+    "absPath": "/usr/src/app/dist/app.js",
     "browserPath": "/app.js",
     "relativePath": "app.js",
     "type": "js",
     "webIndexed": true
   },
   {
-    "absPath": "/home/lej/Documents/transcendence/frontend/dist/vendor.js",
+    "absPath": "/usr/src/app/dist/vendor.js",
     "browserPath": "/vendor.js",
     "relativePath": "vendor.js",
     "type": "js",
