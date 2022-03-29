@@ -7,11 +7,14 @@ let WIDTH = 0;
 let HEIGHT = 0;
 
 
-var Player = function(p) {
-  this.w = 15;
-  this.h = 80;
+var Player = function(p, pos) {
+  this.w = HEIGHT * 0.05;
+  this.h = HEIGHT * 0.18;
+  let tmp = this.w * 2;
 
-  this.pos = p.createVector(this.w * 2, HEIGHT / 2 - this.h / 2);
+  (!pos) ? tmp: tmp = WIDTH - tmp;
+
+  this.pos = p.createVector(tmp, HEIGHT / 2 - this.h / 2);
   this.acc = p.createVector(0, 0);
   this.spd = 10;
   this.maxSpd = 10;
@@ -36,8 +39,8 @@ var Player = function(p) {
 var Ball = function(p) {
   this.x = WIDTH / 2;
   this.y = HEIGHT / 2;
-  this.size = WIDTH * 0.02;
-  this.velocity = 9;
+  this.size = WIDTH * 0.04;
+  this.velocity = 4;
   this.dx = this.velocity;
   this.dy = this.velocity;
 
@@ -54,23 +57,60 @@ var Ball = function(p) {
     this.x = this.x + this.dx;
     this.y = this.y + this.dy;
   }
+
+  this.bouncex = function() {
+    this.dx = this.dx * -1;
+    this.velocity += 0.03;
+  }
+
+  this.bouncey = function() {
+    this.dy = this.dy * -1;
+    this.velocity += 0.03;
+  }
 }
 
 var sketch = function (p: p5) {
   let player;
+  let player2;
   let ball;
+  let background;
+
+  // my functions
+
+  function colide(iplayer, ball) {
+    let px = iplayer.pos.x;
+    let py = iplayer.pos.y;
+    let bx = ball.x;
+    let by = ball.y;
+
+    if (bx + ball.size >= px && bx <= px + player.w && by +ball.size >= py && by <= py + iplayer.h) {
+      if (bx - px > px - bx)
+        ball.bouncex();
+      else
+        ball.bouncey();
+    }
+  }
+
+  // p5 functions
+
+  p.preload = function() {
+    //background = p.loadImage('images/background.jpg')
+  }
 
   p.setup = function () {
     WIDTH = p.windowWidth - 20;
     HEIGHT = p.windowHeight - 20;
     p.createCanvas(WIDTH , HEIGHT);
-    player = new Player(p);
+    player = new Player(p, 0);
+    player2 = new Player(p, 1);
     ball = new Ball(p);
   }
 
   p.windowResized = function() {
+    ball.size = WIDTH * 0.04;
     WIDTH = p.windowWidth - 20;
     HEIGHT = p.windowHeight - 20;
+    player.w = 
     p.resizeCanvas(WIDTH, HEIGHT);
   }
 
@@ -79,27 +119,39 @@ var sketch = function (p: p5) {
     p.noStroke();
     p.fill(255);
     player.update();
+    player2.update();
     ball.update(player);
+    colide(player, ball);
+    colide(player2, ball);
     player.show();
+    player2.show();
     ball.show();
   }
 
   p.keyPressed = function () {
-    if (p.key == "w" || p.key == "W" || p.keyCode == p.UP_ARROW) {
+    if (p.key == "w" || p.key == "W") {
       player.up();
     }
-    else if (p.key == "s" || p.key == "S" || p.keyCode == p.DOWN_ARROW) {
+    else if (p.keyCode == p.UP_ARROW)
+      player2.up();
+    else if (p.key == "s" || p.key == "S") {
       player.down();
     }
+    else if (p.keyCode == p.DOWN_ARROW)
+      player2.down();
   }
 
   p.keyReleased = function () {
-    if (p.key == "w" || p.keyCode == p.UP_ARROW) {
+    if (p.key == "w") {
       player.stop();
     }
-    else if (p.key == "s" || p.keyCode == p.DOWN_ARROW) {
+    else if (p.keyCode == p.UP_ARROW)
+      player2.stop();
+    else if (p.key == "s") {
       player.stop();
     }
+    else if (p.keyCode == p.DOWN_ARROW)
+      player2.stop();
   }
 }
 
