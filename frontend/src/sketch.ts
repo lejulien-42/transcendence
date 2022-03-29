@@ -76,18 +76,22 @@ var sketch = function (p: p5) {
   let background;
 
   // my functions
-
-  function colide(iplayer, ball) {
+  function colide(iplayer, iball) {
     let px = iplayer.pos.x;
     let py = iplayer.pos.y;
-    let bx = ball.x;
-    let by = ball.y;
+    let bx = iball.x;
+    let by = iball.y;
 
-    if (bx + ball.size >= px && bx <= px + player.w && by +ball.size >= py && by <= py + iplayer.h) {
-      if (bx - px > px - bx)
-        ball.bouncex();
-      else
-        ball.bouncey();
+    if (bx + iball.size >= px && bx <= px + player.w && by +iball.size >= py && by <= py + iplayer.h) {p
+        iball.bouncex();
+        if (iball.y > iplayer.pos.x + (iplayer.h / 2)) {
+          if (iball.dy > 0)
+            iball.bouncey();
+        }
+        else {
+          if (iball.dy > 0)
+          iball.bouncey();
+        }
     }
   }
 
