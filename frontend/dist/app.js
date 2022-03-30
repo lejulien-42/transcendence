@@ -34,6 +34,7 @@ let HEIGHT = 0;
 var Player = function (p, pos) {
   this.w = HEIGHT * 0.05;
   this.h = HEIGHT * 0.18;
+  this.score = 0;
   let tmp = this.w * 2;
   !pos ? tmp : tmp = WIDTH - tmp;
   this.pos = p.createVector(tmp, HEIGHT / 2 - this.h / 2);
@@ -85,12 +86,15 @@ var Ball = function (p) {
     this.dy = this.dy * -1;
     this.velocity += 0.03;
   };
+  this.respawn = function () {
+    this.x = WIDTH / 2;
+    this.y = HEIGHT / 2;
+  };
 };
 var sketch = function (p) {
   let player;
   let player2;
   let ball;
-  let background;
   function colide(iplayer, iball) {
     let px = iplayer.pos.x;
     let py = iplayer.pos.y;
@@ -120,9 +124,21 @@ var sketch = function (p) {
     p.background(0);
     p.noStroke();
     p.fill(255);
+    p.rect(WIDTH / 2, 0, WIDTH * 0.02, HEIGHT);
     player.update();
     player2.update();
     ball.update(player);
+    if (ball.x < 0) {
+      player2.score += 1;
+      ball.respawn();
+    }
+    if (ball.x > WIDTH) {
+      player.score += 1;
+      ball.respawn();
+    }
+    p.textSize(40);
+    p.text(player.score, WIDTH * 0.25, HEIGHT * 0.25);
+    p.text(player2.score, WIDTH * 0.75, HEIGHT * 0.25);
     colide(player, ball);
     colide(player2, ball);
     player.show();
