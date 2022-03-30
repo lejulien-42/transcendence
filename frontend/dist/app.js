@@ -72,7 +72,7 @@ var Ball = function (p) {
     p.rect(this.x, this.y, this.size, this.size);
   };
   this.update = function (player) {
-    if (this.x <= 0 || this.x + this.size > WIDTH || this.y > player.y && this.y < player.y + player.h) this.dx = this.dx * -1;
+    if (this.y > player.y && this.y < player.y + player.h) this.dx = this.dx * -1;
     if (this.y <= 0 || this.y + this.size > HEIGHT) this.dy = this.dy * -1;
     this.x = this.x + this.dx;
     this.y = this.y + this.dy;
@@ -91,13 +91,14 @@ var sketch = function (p) {
   let player2;
   let ball;
   let background;
-  function colide(iplayer, ball) {
+  function colide(iplayer, iball) {
     let px = iplayer.pos.x;
     let py = iplayer.pos.y;
-    let bx = ball.x;
-    let by = ball.y;
-    if (bx + ball.size >= px && bx <= px + player.w && by + ball.size >= py && by <= py + iplayer.h) {
-      if (bx - px > px - bx) ball.bouncex(); else ball.bouncey();
+    let bx = iball.x;
+    let by = iball.y;
+    if (bx + iball.size >= px && bx <= px + player.w && by + iball.size >= py && by <= py + iplayer.h) {
+      p;
+      iball.bouncex();
     }
   }
   p.preload = function () {};

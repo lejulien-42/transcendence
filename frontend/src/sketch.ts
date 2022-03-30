@@ -50,7 +50,7 @@ var Ball = function(p) {
   }
 
   this.update = function(player) {
-    if (this.x <= 0 || (this.x + this.size > WIDTH) || this.y > player.y && this.y < player.y + player.h)
+    if (this.y > player.y && this.y < player.y + player.h)
         this.dx = this.dx * -1;
     if (this.y <= 0 || (this.y + this.size > HEIGHT))
         this.dy = this.dy * -1;
@@ -84,14 +84,6 @@ var sketch = function (p: p5) {
 
     if (bx + iball.size >= px && bx <= px + player.w && by +iball.size >= py && by <= py + iplayer.h) {p
         iball.bouncex();
-        if (iball.y > iplayer.pos.x + (iplayer.h / 2)) {
-          if (iball.dy > 0)
-            iball.bouncey();
-        }
-        else {
-          if (iball.dy > 0)
-          iball.bouncey();
-        }
     }
   }
 
