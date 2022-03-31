@@ -10,7 +10,9 @@
     "url": "git@github.com:troysandal/p5js-typescript-fusebox.git"
   },
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "socket.io": "^4.4.1"
+  },
   "devDependencies": {
     "@types/node": "^14.14.28",
     "@types/p5": "^0.9.1",

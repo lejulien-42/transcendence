@@ -13,3 +13,15 @@ services:
       - 4444:4444
     working_dir: /usr/src/app
     command: sh -c "npm run sketch" &> /dev/null
+  back:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./backend:/usr/src/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    working_dir: /usr/src/app
+    command: sh -c "npm run" &> /dev/null
